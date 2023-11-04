@@ -17,6 +17,7 @@ const productsList = document.querySelector('.container-items');
 // Variable de arreglos de Productos
 let allProducts = [];
 
+
 const valorTotal = document.querySelector('.total-pagar');
 
 const countProducts = document.querySelector('#contador-productos');
@@ -135,4 +136,115 @@ function agregado(){
         showConfirmButton: false,
         timer: 1000
       })
+  }
+  function comprado(){
+    Swal.fire({
+        /*position: 'bottom-end',*/
+        position: 'center',
+        icon: 'success',
+        title: 'Compra Exitosa!',
+        showConfirmButton: false,
+        timer: 1800
+      })
+  }
+  function irDatosPago() {
+	window.location.href = "datospago.html";
+}
+/*Modal 1*/
+document.getElementById('abrirModal').addEventListener('click', function() {
+	document.getElementById('ocultacar').style.display = 'none';
+	document.getElementsByClassName('modal').style.display = 'block';
+});
+
+document.getElementById('cerrarModal').addEventListener('click', function() {
+	document.getElementById('formulario-compra').style.display = 'none';
+});
+/**MODAL 2 */
+document.getElementById('abrirModal2').addEventListener('click', function() {
+	document.getElementById('formulario-compra').style.display = 'none';
+	document.getElementsByClassName('modal2').style.display = 'block';
+});
+
+document.getElementById('cerrarModal2').addEventListener('click', function() {
+	document.getElementById('resumen-compra').style.display = 'none';
+});
+
+
+  //**complemento */
+  let carrito = [];
+  let total = 0.00;
+
+  function agregarAlCarrito(idProducto, nombre, precio) {
+	  carrito.push({ idProducto, nombre, precio });
+	  total += precio;
+	  actualizarCarrito();
+  }
+    console.log(carrito);
+  function actualizarCarrito() {
+	  const carritoList = document.getElementById('carrito');
+	  carritoList.innerHTML = '';
+
+	  carrito.forEach(item => {
+		  const li = document.createElement('li');
+		  li.textContent = `ID: ${item.idProducto} - Nombre: ${item.nombre} - Precio: $${item.precio.toFixed(2)}`;
+		  carritoList.appendChild(li);
+	  });
+
+	  document.getElementById('total').textContent = total.toFixed(2);
+  }
+
+  function generarCompra() {
+	  const formularioCompra = document.getElementById('formulario-compra');
+	  formularioCompra.style.display = 'block';
+  }
+
+  function realizarCompra() {
+	 
+	  const nombre = document.getElementById('nombre-cliente').value;
+	  const numeroCelular = document.getElementById('numero-celular').value;
+	  const correoElectronico = document.getElementById('correo-electronico').value;
+	  const numeroTarjeta = document.getElementById('numero-tarjeta').value;
+	  const fechaVencimiento = document.getElementById('fecha-vencimiento').value;
+	  const cvv = document.getElementById('cvv').value;
+	  const calle = document.getElementById('calle').value;
+	  const numeroInterior = document.getElementById('numero-interior').value;
+	  const numeroExterior = document.getElementById('numero-exterior').value;
+	  const ciudad = document.getElementById('ciudad').value;
+	  const codigoPostal = document.getElementById('codigo-postal').value;
+
+	  if (numeroTarjeta.length !== 16) {
+		  alert('El número de tarjeta debe tener 16 dígitos.');
+		  return;
+	  }
+
+	  const resumenCompra = document.getElementById('resumen-compra');
+	  const productosCompradosList = document.getElementById('productos-comprados');
+	  const totalPagado = document.getElementById('total-pagado');
+
+	  productosCompradosList.innerHTML = '';
+	  carrito.forEach(item => {
+		  const li = document.createElement('li');
+		  li.textContent = `ID: ${item.idProducto} - Nombre: ${item.nombre} - Precio: $${item.precio.toFixed(2)}`;
+		  productosCompradosList.appendChild(li);
+	  });
+
+	  totalPagado.textContent = total.toFixed(2);
+
+	  document.getElementById('resumen-nombre-cliente').textContent = nombre;
+	  document.getElementById('resumen-numero-celular').textContent = numeroCelular;
+	  document.getElementById('resumen-correo-electronico').textContent = correoElectronico;
+	 /** document.getElementById('resumen-numero-tarjeta').textContent = numeroTarjeta;
+	  document.getElementById('resumen-fecha-vencimiento').textContent = fechaVencimiento;
+	  document.getElementById('resumen-cvv').textContent = cvv;*/
+	  document.getElementById('resumen-calle').textContent = calle;
+	  document.getElementById('resumen-numero-interior').textContent = numeroInterior;
+	  document.getElementById('resumen-numero-exterior').textContent = numeroExterior;
+	  document.getElementById('resumen-ciudad').textContent = ciudad;
+	  document.getElementById('resumen-codigo-postal').textContent = codigoPostal;
+
+	  resumenCompra.style.display = 'block';
+
+	  carrito = [];
+	  total = 0.00;
+	  actualizarCarrito();
   }

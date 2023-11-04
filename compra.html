@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@200;300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        <script src="./assets/css/bootstrap.min.css"></script>
+        <script src="./assets/script/bootstrap.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<title>BeefGrill</title>
+		<link rel="stylesheet" href="./assets/css/style.css" />
+	</head>
+	<body>
+		<header>
+            <nav class="menu">
+                <ul>
+                  <li><a href="./index.html">Home</a></li>
+                  <li><a href="./compra.html">Cortes</a></li>
+                  <li><a href="./web/nosotros.html">Nosotros</a></li>
+                </ul>
+            </nav>
+			<!--<h1><a href="./index.html">Inicio</a></h1>-->
+
+			<div class="container-icon">
+				<div class="container-cart-icon">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke-width="1.5"
+						stroke="currentColor"
+						class="icon-cart"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+						/>
+					</svg>
+                    <!--CONTADOR PRODUCTOS-->
+					<div class="count-products">
+						<span id="contador-productos">0</span>
+					</div>
+				</div>
+            </div>
+                 <!--CONTENEDOR CARRITO-->
+				<div id="ocultacar"    class="container-cart-products hidden-cart">
+					<div class="row-product hidden">
+						<div class="cart-product">
+							<div class="info-cart-product">
+								<span class="cantidad-producto-carrito">1</span>
+								<p class="titulo-producto-carrito">Lomo</p>
+								<span class="precio-producto-carrito">$580</span>
+                                <span>PR001 - Nombre: Ribe Eye 1kg - Precio: $980.00</span>
+							</div>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke-width="1.5"
+								stroke="currentColor"
+								class="icon-close"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									d="M6 18L18 6M6 6l12 12"
+								/>
+							</svg>
+						</div>
+					</div>
+					<div class="cart-total hidden">
+						<h3>Total:<span class="total-pagar" id="total">$200</span></h3>
+						</br>
+                        <button id="abrirModal" onclick="generarCompra()">Generar Compra</button>
+					</div>
+					<p class="cart-empty">El carrito está vacío</p>
+			  </div>
+		</header>
+        <ul id="carrito"style=" display: none;" >
+        </ul>
+        <section class="container-main">
+            <div class="image"></div>
+                <!--<img src="./assets/img/logo.png" alt="logo de empresa">-->
+        </section>
+        <!--CONTAINER PRODUCTOS-->
+		<div class="container-items">
+			<div class="item" id="001">
+				<figure>
+					<img
+						src="./assets/img/corte-1.jpg"
+						alt="producto"
+					/>
+				</figure>
+				<div class="info-product">
+					<h2>Ribe Eyeeee</h2>
+					<p class="price">$980</p>
+                    <span>PR001 - Nombre: Ribe Eye 1kg - Precio: $980.00</span>
+					<button class="btn-add-cart" id="agregado" onclick="agregarAlCarrito('PR001', 'Ribe Eye 1kg', 980.00)">Agregar</button>
+				</div>
+			</div>
+			<div class="item" id="002">
+				<figure>
+					<img
+						src="./assets/img/corte-2.jpg"
+						alt="producto"
+					/>
+				</figure>
+				<div class="info-product">
+					<h2>Picaña</h2>
+					<p class="price">$220</p>
+                    <span>PR002 - Nombre: Picaña 1kg - Precio: $220.00</span>
+					<button class="btn-add-cart" id="agregado" onclick="return agregarAlCarrito('PR002', 'Picaña 1kg', 220.00)">Agregar</button>
+				</div>
+			</div>
+			<div class="item" id="003">
+				<figure>
+					<img
+						src="./assets/img/corte-3.jpg"
+						alt="producto"
+					/>
+				</figure>
+				<div class="info-product">
+					<h2>Costilla</h2>
+					<p class="price">$450</p>
+                    <span>PR003 - Nombre: Costilla 1kg - Precio: $450.00</span>
+					<button class="btn-add-cart" id="agregado" onclick="return agregarAlCarrito('PR003', 'Costilla 1kg', 450.00)">Agregar</button>
+				</div>
+			</div>
+            <div class="item" id="004">
+				<figure>
+					<img
+						src="./assets/img/corte-4.jpg"
+						alt="producto"
+					/>
+				</figure>
+				<div class="info-product">
+					<h2>Arrachera</h2>
+					<p class="price">$690</p>
+                    <span>PR004 - Nombre: Arrachera 1kg - Precio: $690.00</span>
+					<button class="btn-add-cart" id="agregado" onclick="return agregarAlCarrito('PR004', 'Arrachera 1kg', 690.00)">Agregar</button>
+				</div>
+			</div>
+			<div class="item" id="005">
+				<figure>
+					<img
+						src="./assets/img/corte-5.jpg"
+						alt="producto"
+					/>
+				</figure>
+				<div class="info-product">
+					<h2>Espinazo</h2>
+					<p class="price">$450</p>
+                    <span>PR005 - Nombre: Espinazo 1kg - Precio: $450.00</span>
+					<button class="btn-add-cart" id="agregado" onclick="return agregarAlCarrito('PR005', 'Espinazo 1kg', 450.00)">Agregar</button>
+				</div>
+			</div>
+            <div class="item" id="006">
+				<figure>
+					<img
+						src="./assets/img/corte-6.jpg"
+						alt="producto"
+					/>
+				</figure>
+				<div class="info-product">
+					<h2>Ribe Eye Clasic</h2>
+					<p class="price">$650</p>
+                    <span>PR006 - Nombre: Ribe Eye Clasic 1kg - Precio: $650.00</span>
+					<button class="btn-add-cart" id="agregado" onclick="return agregarAlCarrito('PR006', 'Ribe Eye Clasic 1kg', 650.00)">Agregar</button>
+				</div>
+			</div>
+            <div class="item" id="007">
+				<figure>
+					<img
+						src="./assets/img/corte-7.jpg"
+						alt="producto"
+					/>
+				</figure>
+				<div class="info-product">
+					<h2>Martillo</h2>
+					<p class="price">$350</p>
+                    <span>PR007 - Nombre: Martillo 1kg - Precio: $350.00</span>
+					<button class="btn-add-cart" id="agregado" onclick="return agregarAlCarrito('PR007', 'Martillo 1kg', 350.00)">Agregar</button>
+				</div>
+			</div>
+            <div class="item" id="008">
+				<figure>
+					<img
+						src="./assets/img/corte-8.jpg"
+						alt="producto"
+					/>
+				</figure>
+				<div class="info-product">
+					<h2>Lomo</h2>
+					<p class="price">$250</p>
+                    <span>PR008 - Nombre: Lomo 1kg - Precio: $250.00</span>
+					<button class="btn-add-cart" id="agregado" onclick="return agregarAlCarrito('PR008', 'Martillo 1kg', 250.00)">Agregar</button>
+				</div>
+			</div>
+            <div class="item" id="009">
+				<figure>
+					<img
+						src="./assets/img/corte-9.jpg"
+						alt="producto"
+					/>
+				</figure>
+				<div class="info-product">
+					<h2>Churrasco</h2>
+					<p class="price">$380</p>
+                    <span>PR009 - Nombre: Churrasco 1kg - Precio: $380.00</span>
+					<button class="btn-add-cart" id="agregado" onclick="return agregarAlCarrito('PR009', 'Churrasco 1kg', 380.00)">Agregar</button>
+				</div>
+			</div>
+            <div class="item" id="010">
+				<figure>
+					<img
+						src="./assets/img/corte-10.jpg"
+						alt="producto"
+					/>
+				</figure>
+				<div class="info-product">
+					<h2>Lomo alto</h2>
+					<p class="price">$750</p>
+                    <span>PR010 - Nombre: Lomo alto 1kg - Precio: $750.00</span>
+					<button class="btn-add-cart" id="agregado" onclick="return agregarAlCarrito('PR010', 'Lomo alto 1kg', 750.00)">Agregar</button>
+				</div>
+		</div>
+        <div class="item" id="011">
+            <figure>
+                <img
+                    src="./assets/img/corte-11.jpg"
+                    alt="producto"
+                />
+            </figure>
+            <div class="info-product">
+                <h2>Tomahawk</h2>
+                <p class="price">$670</p>
+                <span>PR011 - Nombre: Tomahawk 1kg - Precio: $670.00</span>
+                <button class="btn-add-cart" id="agregado" onclick="return agregarAlCarrito('PR011', 'Tomahawk 1kg', 670.00)">Agregar</button>
+            </div>
+        </div>
+        <div class="item" id="012">
+            <figure>
+                <img
+                    src="./assets/img/corte-12.png"
+                    alt="producto"
+                />
+            </figure>
+            <div class="info-product">
+                <h2>New York Steak</h2>
+                <p class="price">$850</p>
+                <span>PR012 - Nombre: New York Steak 1kg - Precio: $850.00</span>
+                <button class="btn-add-cart" id="agregado" onclick="return agregarAlCarrito('PR012', 'New York Steak', 850.00)">Agregar</button>
+            </div>
+        </div>
+        <div class="item" id="013">
+            <figure>
+                <img
+                    src="./assets/img/corte-13.webp"
+                    alt="producto"
+                />
+            </figure>
+            <div class="info-product">
+                <h2>Sirloin</h2>
+                <p class="price">$550</p>
+                <span>PR013 - Nombre: Sirloin 1kg - Precio: $550.00</span>
+                <button class="btn-add-cart" id="agregado" onclick="return agregarAlCarrito('PR013', 'Sirloin 1kg', 550.00)">Agregar</button>
+            </div>
+        </div>
+        <div class="item" id="014">
+            <figure>
+                <img
+                    src="./assets/img/corte-14.jpg"
+                    alt="producto"
+                />
+            </figure>
+            <div class="info-product">
+                <h2>Chuleton</h2>
+                <p class="price">$450</p>
+                <span>PR014 - Nombre: Chuleton 1kg - Precio: $450.00</span>
+                <button class="btn-add-cart" id="agregado" onclick="return agregarAlCarrito('PR014', 'Chuleton 1kg', 450.00)">Agregar</button>
+            </div>
+        </div>
+        <div class="item" id="015">
+            <figure>
+                <img
+                    src="./assets/img/corte-15.jpg"
+                    alt="producto"
+                />
+            </figure>
+            <div class="info-product">
+                <h2>Entrecot</h2>
+                <p class="price">$350</p>
+                <span>PR015 - Nombre: Entrecot 1kg - Precio: $350.00</span>
+                <button class="btn-add-cart" id="agregado" onclick="return agregarAlCarrito('PR015', 'Entrecot 1kg', 350.00)">Agregar</button>
+            </div>
+        </div>
+        <div class="item" id="016">
+            <figure>
+                <img
+                    src="./assets/img/corte-16.jpg"
+                    alt="producto"
+                />
+            </figure>
+            <div class="info-product">
+                <h2>Vacío</h2>
+                <p class="price">Precio $150</p>
+                <span>PR016 - Nombre: Vacío 1kg - Precio: $150.00</span>
+                <button class="btn-add-cart" id="agregado" onclick="return agregarAlCarrito('PR016', 'Vacío 1kg', 150.00)">Agregar</button>
+            </div>
+        </div>
+        <div class="item" id="017">
+            <figure>
+                <img
+                    src="./assets/img/corte-17.webp"
+                    alt="producto"
+                />
+            </figure>
+            <div class="info-product">
+                <h2>T-Bone</h2>
+                <p class="price">$620</p>
+                <span>PR017 - Nombre: T-Bone 1kg - Precio: $620.00</span>
+                <button class="btn-add-cart" id="agregado" onclick="return agregarAlCarrito('PR017', 'T-Bone 1kg', 620.00)">Agregar</button>
+            </div>
+        </div>
+        <div class="item" id="018">
+            <figure>
+                <img
+                    src="./assets/img/corte-18.webp"
+                    alt="producto"
+                />
+            </figure>
+            <div class="info-product">
+                <h2>Sirloin Supreme</h2>
+                <p class="price">$863</p>
+                <span>PR018 - Nombre: Sirloin Supreme 1kg - Precio: $863.00</span>
+                <button class="btn-add-cart" id="agregado" onclick="return agregarAlCarrito('PR018', 'Sirloin Supreme 1kg', 863.00)">Agregar</button>
+            </div>
+        </div>
+        <div class="item" id="019">
+            <figure>
+                <img
+                    src="./assets/img/corte-19.jpg"
+                    alt="producto"
+                />
+            </figure>
+            <div class="info-product">
+                <h2>New York Classic</h2>
+                <p class="price">$850</p>
+                <span>PR019 - Nombre: New York Classic 1kg - Precio: $850.00</span>
+                <button class="btn-add-cart" id="agregado" onclick="return agregarAlCarrito('PR019', 'New York Classic 1kg', 850.00)">Agregar</button>
+            </div>
+        </div>
+        <div class="item" id="020">
+            <figure>
+                <img
+                    src="./assets/img/corte-20.webp"
+                    alt="producto"
+                />
+            </figure>
+            <div class="info-product">
+                <h2>Lomo Bajo</h2>
+                <p class="price">$290</p>
+                <span>PR020 - Nombre: Lomo Bajo 1kg - Precio: $290.00</span>
+                <button class="btn-add-cart" id="agregado" onclick="return agregarAlCarrito('PR020', 'Lomo Bajo 1kg', 290.00)">Agregar</button>
+            </div>
+        </div>
+        <div class="item" id="021">
+            <figure>
+                <img
+                    src="./assets/img/corte-21.jpg"
+                    alt="producto"
+                />
+            </figure>
+            <div class="info-product">
+                <h2>Cabreira</h2>
+                <p class="price">$380</p>
+                <span>PR021 - Nombre: Cabreira 1kg - Precio: $380.00</span>
+                <button class="btn-add-cart" id="agregado" onclick="return agregarAlCarrito('PR021', 'Cabreira 1kg', 380.00)">Agregar</button>
+            </div>
+        </div>
+        <!--FORMULARIO-->
+        <div id="formulario-compra" class="modal" style="display: none;">
+            <div class="modal-contenido">
+                <span class="cerrar" id="cerrarModal">&times;</span>
+                
+                <form id="form-compra" onsubmit="return false;">
+                    <hr size="5px" width="60%"  color="black"/>
+                    <h2>Datos Personales</h2>
+                    <!--<label for="nombre-cliente">Nombre de Cliente:</label>-->
+                    <input type="text" placeholder="Nombre Completo" class="main__input" id="nombre-cliente" required>
+                    <!--<label for="numero-celular">Número Celular:</label>-->
+                    <input type="tel" placeholder="Número Celular" class="main__input" id="numero-celular" pattern="[0-9]{10}" required>
+                    <!--<label for="correo-electronico">Correo Electrónico:</label>-->
+                    <input type="email" placeholder="E-Mail" class="main__input" id="correo-electronico" required><br><br><br>
+        
+                    <hr size="5px" width="60%"  color="black"/>
+                    <h2>Datos Bancarios</h2>
+                    <label for="numero-tarjeta">Número de Tarjeta (16 dígitos):</label>
+                    <input type="text" id="numero-tarjeta" class="form_field" placeholder="Ej. 4528 2561 4521 8547" required pattern="[0-9]{15}"><br>
+                    <label for="fecha-vencimiento">Fecha de Vencimiento:</label>
+                    <input type="text" id="fecha-vencimiento" class="form_field" placeholder="MM/AA" required><br>
+                    <label for="cvv">CVV:</label>
+                    <input type="text" id="cvv"class="form_field" placeholder="Revisa la parte trasera de tarjeta"required><br><br><br>
+        
+                    <hr size="5px" width="60%"  color="black"/>
+                    <h2>Domicilio</h2>
+                    <label for="calle">Calle:</label>
+                    <input type="text" id="calle" class="form_field" placeholder="Tu calle" required>
+                    <label for="numero-interior">Número Interior:</label>
+                    <input type="text" id="numero-interior" class="form_field" placeholder="Ej. 45">
+                    <label for="numero-exterior">Número Exterior:</label>
+                    <input type="text" id="numero-exterior" class="form_field"  placeholder="Ej. 5">
+                    <label for="ciudad">Ciudad:</label>
+                    <input type="text" id="ciudad" class="form_field"  placeholder="Ej. México" required>
+                    <label for="codigo-postal">Código Postal:</label>
+                    <input type="text" id="codigo-postal" class="form_field"  placeholder="Ej. 0048" required>
+                    <hr size="5px" width="60%"  color="black"/>
+                    <br><br><br>
+        
+                    <button id="abrirModal2" onclick="  realizarCompra(); comprado()">Realizar Compra</button>
+                </form>
+            </div>
+        </div>
+        <!--RESUMEN DE COMPRA-->
+        <div id="resumen-compra" class="modal2"   style="display: none;">
+            <div class="modal-contenido2">
+                <span class="cerrar" id="cerrarModal2">&times;</span>
+                <h2>Resumen de Compra</h2>
+                <hr size="5px" width="60%"  color="black"/>
+                <h2>Cliente</h2>
+                <div class="personal">
+                    <p><b>Nombre:</b><span id="resumen-nombre-cliente"></span></p>
+                    <p><b>Celular:</b><span id="resumen-numero-celular"></span></p>
+                    <p><b>E-Mail:</b><span id="resumen-correo-electronico"></span></p>
+                </div>
+                <hr size="5px" width="60%"  color="black"/>
+                <h2>Entregar En:</h2>
+                <div class="entrega">
+                    <p><b>Calle: </b><span id="resumen-calle"></span></p>
+                    <p><b>Interior: </b><span id="resumen-numero-interior"></span></p>
+                    <p><b>Exterior: </b><span id="resumen-numero-exterior"></span></p>
+                    <p><b>Ciudad: </b><span id="resumen-ciudad"></span></p>
+                    <p><b>Código Postal:</b><span id="resumen-codigo-postal"></span></p></br><br>
+                </div>
+                <hr size="5px" width="60%"  color="black"/>
+                <h2>Productos Comprados:</h2>
+                <ul id="productos-comprados">
+                </ul>
+                <hr size="5px" width="60%"  color="black"/>
+                <h2>Total Pagado: $<span id="total-pagado">0.00</span></h2>
+                <button class="salir"><a href="./compra.html">Terminar</a></button>
+            </div>
+        </div>
+        <script src="https://unpkg.com/boxicons@2.1.3/dist/boxicons.js"></script>
+        <script src="../assets/script/scripts.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="./assets/script/swet.js"></script>
+		<script src="./assets/script/app.js"></script>
+	</body>
+</html>
