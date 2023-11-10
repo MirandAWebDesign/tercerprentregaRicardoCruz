@@ -25,6 +25,7 @@ const countProducts = document.querySelector('#contador-productos');
 const cartEmpty = document.querySelector('.cart-empty');
 const cartTotal = document.querySelector('.cart-total');
 
+
 productsList.addEventListener('click', e => {
 	if (e.target.classList.contains('btn-add-cart')) {
 		const product = e.target.parentElement;
@@ -71,6 +72,116 @@ rowProduct.addEventListener('click', e => {
 		showHTML();
 	}
 });
+//ocultar carrito
+const btnOcultarCarrito = document.getElementById('ocultarCarritoBtn');
+
+
+// Evento click para ocultar el carrito
+btnOcultarCarrito.addEventListener('click', () => {
+    containerCartProducts.classList.add('hidden-cart');
+});
+
+// Evento click para ocultar el carrito
+
+    // Obtén la referencia al div
+    const tempDiv = document.getElementById('tempDiv');
+
+    // Muestra el div inicialmente
+    tempDiv.style.display = 'block';
+
+    // Configura un temporizador para ocultar el div después de 3000 milisegundos (3 segundos)
+    setTimeout(() => {
+        tempDiv.style.display = 'none';
+    }, 3000);
+
+// vaciar carrito
+const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
+
+vaciarCarritoBtn.addEventListener('click', () => {
+    // Vaciar el array de productos
+    allProducts = [];
+    
+    // Limpiar el HTML del carrito
+    showHTML();
+});
+
+//  local stor
+
+
+/**Para los datos de formulario */
+
+// Función para obtener los datos del formulario desde el localStorage
+const getFormDataFromStorage = () => {
+    const storedData = localStorage.getItem('formData');
+    return storedData ? JSON.parse(storedData) : {};
+};
+
+// Función para guardar los datos del formulario en el localStorage
+const saveFormDataToStorage = (data) => {
+    localStorage.setItem('formData', JSON.stringify(data));
+};
+
+document.getElementById('cerrarModal').addEventListener('click', function () {
+    // ... (código anterior)
+
+    // Obtener datos del formulario y guardarlos en localStorage
+    const formData = {
+        nombre,
+        numeroCelular,
+        correoElectronico,
+        numeroTarjeta,
+        fechaVencimiento,
+        cvv,
+        calle,
+        numeroInterior,
+        numeroExterior,
+        ciudad,
+        codigoPostal,
+    };
+
+    saveFormDataToStorage(formData);
+});
+
+document.getElementById('cerrarModal2').addEventListener('click', function () {
+    // ... (código anterior)
+
+    // Obtener datos del formulario y guardarlos en localStorage
+    const formData = {
+        nombre,
+        numeroCelular,
+        correoElectronico,
+        numeroTarjeta,
+        fechaVencimiento,
+        cvv,
+        calle,
+        numeroInterior,
+        numeroExterior,
+        ciudad,
+        codigoPostal,
+    };
+
+    saveFormDataToStorage(formData);
+});
+
+// Al cargar la página, obtener datos del formulario del localStorage
+document.addEventListener('DOMContentLoaded', () => {
+    const formData = getFormDataFromStorage();
+
+    // Restaurar los datos del formulario en caso de que existan
+    document.getElementById('nombre-cliente').value = formData.nombre || '';
+    document.getElementById('numero-celular').value = formData.numeroCelular || '';
+    document.getElementById('correo-electronico').value = formData.correoElectronico || '';
+    document.getElementById('numero-tarjeta').value = formData.numeroTarjeta || '';
+    document.getElementById('fecha-vencimiento').value = formData.fechaVencimiento || '';
+    document.getElementById('cvv').value = formData.cvv || '';
+    document.getElementById('calle').value = formData.calle || '';
+    document.getElementById('numero-interior').value = formData.numeroInterior || '';
+    document.getElementById('numero-exterior').value = formData.numeroExterior || '';
+    document.getElementById('ciudad').value = formData.ciudad || '';
+    document.getElementById('codigo-postal').value = formData.codigoPostal || '';
+});
+/**fin local stor */
+
 
 // Funcion para mostrar  HTML
 const showHTML = () => {
@@ -126,27 +237,43 @@ const showHTML = () => {
 	valorTotal.innerText = `$${total}`;
 	countProducts.innerText = totalOfProducts;
 };
+
+/* MODIFICAR ALERT DE SWEETALERT*/
+
 //**ALerts */
+
+
+
+function comprado(){
+	Swal.fire({
+		/*position: 'bottom-end',*/
+		position: 'center',
+		icon: 'success',
+		title: 'Compra Exitosa!',
+		showConfirmButton: false,
+		timer: 1800
+	  })
+  }
+
 function agregado(){
     Swal.fire({
-        /*position: 'bottom-end',*/
         position: 'top-end',
-        icon: 'success',
+        icon: 'none',
         title: 'Agregado a Carrito!',
         showConfirmButton: false,
-        timer: 1000
-      })
+        timer: 1000,
+		customClass: {
+			container: 'custom-swal-container',
+			popup: 'custom-swal-popup',
+			title: 'custom-swal-title',
+			text: 'custom-swal-text',
+			icon: 'custom-swal-icon',
+		},	
+
+      });
   }
-  function comprado(){
-    Swal.fire({
-        /*position: 'bottom-end',*/
-        position: 'center',
-        icon: 'success',
-        title: 'Compra Exitosa!',
-        showConfirmButton: false,
-        timer: 1800
-      })
-  }
+
+
   function irDatosPago() {
 	window.location.href = "datospago.html";
 }
@@ -162,7 +289,7 @@ document.getElementById('cerrarModal').addEventListener('click', function() {
 /**MODAL 2 */
 document.getElementById('abrirModal2').addEventListener('click', function() {
 	document.getElementById('formulario-compra').style.display = 'none';
-	document.getElementsByClassName('modal2').style.display = 'block';
+	document.getElementsByClassName('modal2')[0].style.display = 'block';
 });
 
 document.getElementById('cerrarModal2').addEventListener('click', function() {
@@ -212,10 +339,26 @@ document.getElementById('cerrarModal2').addEventListener('click', function() {
 	  const ciudad = document.getElementById('ciudad').value;
 	  const codigoPostal = document.getElementById('codigo-postal').value;
 
-	  if (numeroTarjeta.length !== 16) {
-		  alert('El número de tarjeta debe tener 16 dígitos.');
-		  return;
+	  function cancelada(){
+		Swal.fire({
+			icon: "error",
+			title: "Oops...",
+			text: "Debes llenar todos los datos",
+			footer: 'Compra Cancelada'
+		  });
 	  }
+
+	      // Verificar si algún campo obligatorio está vacío
+		  if (!nombre || !numeroCelular || !correoElectronico || !numeroTarjeta || !fechaVencimiento || !cvv || !calle || !numeroInterior || !numeroExterior || !ciudad || !codigoPostal) {
+			alert('Por favor, llene todos los campos obligatorios. Compra cancelada.');
+		
+			/*window.location.href = "compra.html";*/
+			window.location.href = "compra.html";
+			return;
+		}
+
+	
+		
 
 	  const resumenCompra = document.getElementById('resumen-compra');
 	  const productosCompradosList = document.getElementById('productos-comprados');
@@ -247,4 +390,6 @@ document.getElementById('cerrarModal2').addEventListener('click', function() {
 	  carrito = [];
 	  total = 0.00;
 	  actualizarCarrito();
+
   }
+

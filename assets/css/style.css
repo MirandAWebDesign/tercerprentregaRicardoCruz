@@ -126,6 +126,9 @@ header{
     align-items: center;
     border-radius: 50%;
 }
+#tempDiv{
+    display: none;
+}
 
 #contador-productos{
     background: #fff;
@@ -134,16 +137,17 @@ header{
 }
 /*contenedor del carrito fondo*/
 .container-cart-products{
+
     position: absolute;
     top: 50px;
     right: 0;
 
     background-color: #fff;
-    width: 400px;
+    width: 467px;
     z-index: 1;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.20);
     border-radius: 10px;
-    
+  
 }
 
 .cart-product{
@@ -304,6 +308,7 @@ header{
     transition: all 500ms;
 }
 .cart-empty{
+    height: auto;
     padding: 20px;
     text-align: center;
 }
@@ -414,15 +419,46 @@ header{
     font-weight: 600;
     background: transparent;
 }
+/*oculta carrito*/
+.container-cart-products.hidden-cart {
+    display: none;
+}
+.cart-empty.hidden {
+    display: none;
+}
+#ocultar-leyenda{
+    width: 60px;
+    height: 35px;
+    padding: 8px 15px 8px 15px;
+    /*background-color: #000;*/
+    color: #fff;
+    color: #000;
+    border: 1px solid gray;
+    border: 0px;
+    border-radius: 5px; 
+    border-radius: 0px;
+    text-decoration: none;
+}
 /*Boton generar compra*/
-#abrirModal{
+#ocultarCarritoBtn{
+    align-items: center;
+    width: 100px;
+    height: 65px;
     padding: 8px 15px 8px 15px;
     background-color: #000;
     color: #fff;
     border: 1px solid gray;
     border-radius: 5px;
 }
-#abrirModal:hover{
+#abrirModal, #vaciar-carrito{
+    width: 100px;
+    padding: 8px 15px 8px 15px;
+    background-color: #000;
+    color: #fff;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+#abrirModal:hover, #vaciar-carrito:hover, #ocultarCarritoBtn:hover{
     cursor: pointer;
     background-color: rgb(33, 170, 33);
     border: 1px solid rgb(2, 64, 2);
@@ -588,4 +624,23 @@ header{
 @media (min-width:500px){
 
 
+}
+
+/*sweetalert*/
+
+.custom-swal-container {
+    width: 1800px; 
+}
+  
+.custom-swal-popup {
+    width: 100%; 
+    max-width: 200px;  
+  }
+  
+.custom-swal-title {
+    font-size: 20px; 
+  }
+  
+.custom-swal-text {
+    font-size: 20px; 
 }
