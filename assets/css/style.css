@@ -99,7 +99,6 @@ img{
     max-width: 100%;
 }
 
-/* Header */
 /*aqui era header*/
 header{
     display: flex;
@@ -156,9 +155,7 @@ header{
     align-items: center;
     justify-content: space-between;
     padding: 30px;
-
     border-bottom: 1px solid rgba(0, 0, 0, 0.20);
-
 }
 
 .info-cart-product{
@@ -580,51 +577,12 @@ header{
     text-align: center;
 }*/
 
-/*MEDIA QUERYS RESPONSIVE*/
-@media (min-width:768px){
-    header{
-        align-items: center;
-    }
-    header .logo{
-        display: none;
-    }
-}
 
-@media (max-width:768px){
-    .container-main .image{
-        display: none;
-    }
-    header label{
-        display: block;
-    }
-    .menu{
-        position: absolute;
-        background: #000000;
-        /*background: #252525;*/
-        width: 70%;
-        margin-left: -70%;
-        flex-direction:column; /*esta puede cambiar*/
-    }
-    .menu ul{
-        flex-direction: column;
-    }
-    .menu li{
-        border-top: 1px solid #de6a6a;
-    }
-    #btn-menu:checked ~ .menu{
-        margin: 0;
-    }
-    .logo_title img{
-        display: none;
-    }
 
     
 
-}
-@media (min-width:500px){
 
 
-}
 
 /*sweetalert*/
 
@@ -643,4 +601,136 @@ header{
   
 .custom-swal-text {
     font-size: 20px; 
+}
+
+/*chat media*/
+
+/* Media query para pantallas pequeñas */
+@media only screen and (max-width: 600px) {
+    /* Estilos específicos para pantallas pequeñas */
+    header{
+        align-items: center;
+
+    }
+    header .logo{
+        display: none;
+    }
+    .container-main{
+        display: none;
+    }
+    .container-items{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .item{
+        text-align: center;
+        border-radius: 10px;
+        width: 350px;
+        height: fit-content;
+    }
+    .container-cart-products{
+        width: 400px;
+      
+    }
+    .cart-product{
+        background: #fff;
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.20);
+    }
+    
+    .info-cart-product{
+        justify-content:space-evenly;
+    }
+    
+    .titulo-producto-carrito{
+        font-size: 18px;
+    }
+    
+    .precio-producto-carrito{
+        font-size: 18px;
+    }
+    
+    .cantidad-producto-carrito{
+        font-size: 18px;
+    }
+
+    .cart-total{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        padding: 20px 10px;
+        gap: 2px;
+    }
+       
+    .total-pagar{
+        width: 100%;
+        font-size: 18px;
+    }
+
+    .custom-swal-container {
+        width: 450px; 
+    }
+   /*formulario*/
+    .modal-contenido {
+    width: 90%;
+    }
+    .modal-contenido2{
+        width: 90%;
+    }
+    .modal-contenido2 .personal{
+        width: 100%;
+        flex-direction: column; 
+    }
+    .modal-contenido2 .entrega{
+        width: 100%;
+        flex-direction: column;
+    }
+}
+
+/* Media query para pantallas medianas */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    /* Estilos específicos para pantallas medianas */
+       /*formulario*/
+       .modal-contenido {
+        width: 90%;
+        }
+        .modal-contenido2{
+            width: 90%;
+        }
+        .modal-contenido2 .personal{
+            width: 100%;
+            flex-direction: column; 
+        }
+        .modal-contenido2 .entrega{
+            width: 100%;
+            flex-direction: column;
+        }
+}
+
+/* Media query para pantallas grandes */
+@media only screen and (min-width: 1025px) {
+    /* Estilos específicos para pantallas grandes */
+       /*formulario*/
+       .modal-contenido {
+        width: 90%;
+        }
+        .modal-contenido2{
+            width: 90%;
+        }
+        .modal-contenido2 .personal{
+            width: 100%;
+            flex-direction: column; 
+        }
+        .modal-contenido2 .entrega{
+            width: 100%;
+            flex-direction: column;
+        }
 }
